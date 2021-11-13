@@ -4,6 +4,10 @@ import Jeu.Question.Question;
 
 import java.util.ArrayList;
 
+/**
+ * Groupe de question d'un theme
+ * @author Mathilde Paysant
+ */
 public class Theme {
     private String nom;
     private boolean selection;
@@ -15,14 +19,25 @@ public class Theme {
         this.questions = new ArrayList<Question>();
     }
 
+    /**
+     * Ajouter une question au theme
+     * @param question question à ajouter au theme
+     * @author Mathilde Paysant
+     */
     public void addQuestion(Question question) {
         questions.add(question);
     }
 
+    /**
+     * Renvoyer les questions d'un certain niveau (-1 si tous les niveaux)
+     * @param niveau niveau des questions à retourner
+     * @return question d'un certain niveau
+     * @author Mathilde Paysant
+     */
     public ArrayList<Question> getQuestions(int niveau) {
         ArrayList<Question> result = new ArrayList<Question>();
         for (Question question : questions) {
-            if (question.getNiveau() == niveau) {
+            if (question.getNiveau() == niveau || niveau == -1) {
                 result.add(question);
             }
         }

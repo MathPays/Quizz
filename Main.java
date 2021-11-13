@@ -1,11 +1,8 @@
-import Jeu.Etat;
-import Jeu.Joueur;
-import Jeu.Joueurs;
+import Jeu.Joueur.Joueurs;
 import Jeu.Question.QCM;
 import Jeu.Question.RC;
 import Jeu.Question.VF;
 import Jeu.Theme.Theme;
-import Jeu.Theme.Themes;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -34,14 +31,6 @@ public class Main {
         listeThemes.add(nature);
         listeThemes.add(sport);
         listeThemes.add(loisirs);
-        listeThemes.add(maths);
-
-        /*Themes themes = new Themes(listeThemes,1);
-        System.out.println(themes);
-        for (int i = 0; i < 10; i++) {
-            System.out.println(themes.getNextTheme());
-        }*/
-
 
         //Ajout des questions du thème Histoire
         RC h1 = new RC("Le Mozambique a été colonisé par un pays européen, lequel ?",3,"Portugal");
@@ -92,15 +81,16 @@ public class Main {
 
     }
 
-    /**
-     * Permet à l'utilisateur de creer des joueurs
-     * @return Liste des joueurs de la partie
-     */
-
     /*
         TODO :
         - Possibilité de supprimer un joueur
-        - Quitter la fonction en lancant la partie
+        - Quitter la fonction en lançant la partie
+     */
+
+    /**
+     * Permet à l'utilisateur de creer des joueurs
+     * @return Liste des joueurs de la partie
+     * @author Mathilde Paysant
      */
     public static Joueurs creerJoueurs() {
         Joueurs joueurs = new Joueurs();

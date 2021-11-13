@@ -4,6 +4,7 @@ package Jeu.Question;
  * Question
  * String enonce : Enoncé de la question
  * int niveau : Difficulté de la question
+ * @author Mathilde Paysant
  */
 
 /*
@@ -20,6 +21,7 @@ public abstract class Question {
      * @param enonce Enoncé de la question
      * @param niveau Difficulté de la question
      * @see Question
+     * @author Mathilde Paysant
      */
     public Question(String enonce, int niveau) {
         this.enonce = enonce;

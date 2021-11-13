@@ -1,11 +1,11 @@
 package Jeu.Question;
 
-import Jeu.Etat;
 
 /**
  * Question avec réponse courte, fille de la classe Question
  * String reponse : Bonne réponse à la question
  * @see Question
+ * @author Mathilde Paysant
  */
 
 /*
@@ -21,6 +21,7 @@ public class RC extends Question {
      * @param enonce Intitulé de la question
      * @param niveau Difficulté de la question, de 1 à 3
      * @param reponse Réponse attendue
+     * @author Mathilde Paysant
      */
     public RC(String enonce, int niveau, String reponse) {
         super(enonce, niveau);
@@ -31,6 +32,7 @@ public class RC extends Question {
      * Vérifier si la réponse choisie par l'utilisateur est juste
      * @param reponse Chaine de caractères entrée par l'utilisateur
      * @return true si la réponse est juste, false sinon
+     * @author Mathilde Paysant
      */
     public boolean verifier(String reponse) {
         if (this.reponse == reponse) {

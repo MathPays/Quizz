@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+/**
+ * Liste des thèmes d'une partie
+ * @author Mathilde Paysant
+ */
 public class Themes {
     private ArrayList<Theme> themes;
 
@@ -38,6 +42,11 @@ public class Themes {
         themes.remove(theme);
     }
 
+    /**
+     * Renvoyer le prochain thème dans la liste, au hasard si aucun thème préalablement sélectionné
+     * @return theme suivant
+     * @author Emmie Kieffer
+     */
     public Theme getNextTheme() {
         Theme theme;
         for (int i = 0; i < themes.size(); i++) {

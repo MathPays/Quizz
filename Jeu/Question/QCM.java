@@ -1,12 +1,13 @@
 package Jeu.Question;
 
-
 import java.util.*;
+
 /**
  * Question à choix multiples, fille de la classe Question
  * ArrayList<String> reponses : Liste des réponses
  * int index : Index de la bonne réponse
  * @see Question
+ * @author Mathilde Paysant
  */
 
 /*
@@ -23,6 +24,7 @@ public class QCM extends Question {
      * Création d'une question à choix multiples
      * @param enonce Intitulé de la question
      * @param niveau Difficulté de la question, de 1 à 3
+     * @author Mathilde Paysant
      */
     public QCM(String enonce, int niveau) {
         super(enonce, niveau);
@@ -30,9 +32,16 @@ public class QCM extends Question {
         this.index = 0;
     }
 
+    public QCM(String enonce, int niveau, ArrayList<String> reponses) {
+        super(enonce, niveau);
+        this.reponses = reponses;
+        this.index = 0;
+    }
+
     /**
      * Ajouter une réponse possible à la question à choix multiples
      * @param reponse Intitulé de la réponse
+     * @author Mathilde Paysant
      */
     public void addReponse(String reponse) {
         reponses.add(reponse);
@@ -55,6 +64,7 @@ public class QCM extends Question {
      * Changer la bonne réponse à la question
      * La bonne réponse est par défaut la première réponse (en position 0)
      * @param index Index de la nouvelle bonne réponse
+     * @author Mathilde Paysant
      */
     public void setIndex(int index) {
         if (index < reponses.size()) {
@@ -68,6 +78,7 @@ public class QCM extends Question {
      * Vérifier si la réponse choisie par l'utilisateur est juste
      * @param index Index de la réponse choisie par l'utilisateur
      * @return true si la réponse est juste, false sinon
+     * @author Mathilde Paysant
      */
     public boolean verifier(int index) {
         if (index-1 == this.index) {
