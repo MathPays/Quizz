@@ -77,6 +77,10 @@ public class Joueurs {
         return joueursRestants;
     }
 
+    public Joueur getJoueur(int index) {
+        return joueurs.get(index);
+    }
+
     /**
      * Choix de 4 joueurs dans la liste des joueurs au hasard pour une partie
      * @return liste des 4 joueurs selectionnés

@@ -24,7 +24,7 @@ public class Theme {
      * @param question question à ajouter au theme
      * @author Mathilde Paysant
      */
-    public void addQuestion(Question question) {
+    public void add(Question question) {
         questions.add(question);
     }
 
