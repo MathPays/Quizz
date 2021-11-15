@@ -1,8 +1,11 @@
+import Jeu.Joueur.Joueur;
 import Jeu.Joueur.Joueurs;
 import Jeu.Question.QCM;
+import Jeu.Question.Question;
 import Jeu.Question.RC;
 import Jeu.Question.VF;
 import Jeu.Theme.Theme;
+import Jeu.Theme.Themes;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -31,6 +34,8 @@ public class Main {
         listeThemes.add(nature);
         listeThemes.add(sport);
         listeThemes.add(loisirs);
+
+
 
         //Ajout des questions du thème Histoire
         RC h1 = new RC("Le Mozambique a été colonisé par un pays européen, lequel ?",3,"Portugal");
@@ -102,10 +107,102 @@ public class Main {
                 case 1 :
                     joueurs.creerJoueur();
                     break;
+                case 2 :
+                    System.out.println(joueurs);
+                    joueurs.deleteJoueur();
+                    break;
                 case 3 :
                     System.out.println(joueurs+"\n");
+                    break;
+                case 4 :
+                    if (joueurs.getNbJoueurs() >= 4) {
+                        System.out.println("Lancement de la partie...\n");
+                        return joueurs;
+                    } else {
+                        System.out.println("Nombre de joueurs insuffisants, ajoutez des joueurs.\n");
+                    }
             }
-
         }
     }
+
+    /**
+     * Permet de poser une question, de vérifier la réponse et de mettre à jour le score du joueur
+     * @Author Emmie KIEFFER
+     */
+    public static void poserQuestion(Joueur joueur, Question question, int phase){
+        final int POINT_PHASE_1=2;
+        final int POINT_PHASE_2=3;
+        final int POINT_PHASE_3=5;
+        Scanner scanner = new Scanner(System.in);
+        if (question instanceof QCM) {
+            int i = ((QCM) question).afficherQuestion();
+            int n = scanner.nextInt();
+            if(((QCM) question).verifier(n,i)){
+                switch (phase) {
+                    case(1):
+                        joueur.ajouterScore(POINT_PHASE_1);
+                        break;
+                    case(2):
+                        joueur.ajouterScore(POINT_PHASE_2);
+                        break;
+                    case(3):
+                        joueur.ajouterScore(POINT_PHASE_3);
+                        break;
+                }
+            }
+        }
+        else if (question instanceof RC){
+            System.out.println(question);
+            String n = scanner.nextLine();
+            if(((RC) question).verifier(n)){
+                switch (phase) {
+                    case(1):
+                        joueur.ajouterScore(POINT_PHASE_1);
+                        break;
+                    case(2):
+                        joueur.ajouterScore(POINT_PHASE_2);
+                        break;
+                    case(3):
+                        joueur.ajouterScore(POINT_PHASE_3);
+                        break;
+                }
+            }
+        }
+        else if(question instanceof VF){
+            System.out.println(question);
+            int n = scanner.nextInt();
+            if(((VF) question).verifier(n)){
+                switch (phase) {
+                    case(1):
+                        joueur.ajouterScore(POINT_PHASE_1);
+                        break;
+                    case(2):
+                        joueur.ajouterScore(POINT_PHASE_2);
+                        break;
+                    case(3):
+                        joueur.ajouterScore(POINT_PHASE_3);
+                        break;
+                }
+            }
+        }
+    }
+
+    /**
+     * TODO :
+     * poserQuestion(Question question) {
+     *     - la question posée
+     *     - la réponse traitée
+     *     - score qui change
+     * }
+     * lierQuestion(Theme theme, int phase) {
+     *     - recupere questions du theme selon phase
+     *     - lier question à joueur
+     *     - lancer poserQuestion
+     * }
+     *
+     * tourTheme(Themes themes) {
+     *     selectionne next theme
+     *     lierQuestion pour chaque theme
+     * }
+     */
 }

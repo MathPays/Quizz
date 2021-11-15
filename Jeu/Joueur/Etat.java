@@ -1,7 +1,5 @@
 package Jeu.Joueur;
 
-import Jeu.Question.Question;
-
 /**
  * Etat d'un joueur dans la partie
  * selectionne : joueur selectionne jouant dans la partie

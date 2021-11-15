@@ -9,11 +9,6 @@ package Jeu.Joueur;
  * @see Etat
  */
 
-/*
-    TODO :
-    - Incrémenter le score du joueur
-    - Remettre le score à 0
- */
 public class Joueur {
     public static int nombre = 100;
 
@@ -38,6 +33,17 @@ public class Joueur {
 
     public void setEtat(Etat etat) {
         this.etat = etat;
+    }
+    public Etat getEtat() {
+        return etat;
+    }
+
+    public void ajouterScore(int score){
+        this.score+=score;
+    }
+
+    public int getNumero() {
+        return numero;
     }
 
     @Override

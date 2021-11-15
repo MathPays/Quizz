@@ -76,15 +76,28 @@ public class QCM extends Question {
 
     /**
      * Vérifier si la réponse choisie par l'utilisateur est juste
-     * @param index Index de la réponse choisie par l'utilisateur
+     * @param reponse Réponse de
      * @return true si la réponse est juste, false sinon
      * @author Mathilde Paysant
      */
-    public boolean verifier(int index) {
-        if (index-1 == this.index) {
-            return true;
+    public boolean verifier(int reponse, int bonne) {
+        return reponse == bonne;
+    }
+
+    public int afficherQuestion() {
+        ArrayList<String> liste = new ArrayList<String>(reponses);
+        Collections.shuffle(liste);
+        String result = super.toString();
+        for (int i = 0; i < liste.size(); i++) {
+            result += "\n"+(i+1)+") "+liste.get(i);
         }
-        return false;
+        System.out.println(result.toString());
+        for (int i = 0; i < liste.size(); i++) {
+            if (liste.get(i).equals(reponses.get(index))) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override

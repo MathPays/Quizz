@@ -42,8 +42,39 @@ public class Joueurs {
         System.out.println("Le joueur "+nom+" a été ajouté.\n");
     }
 
-    public void deleteJoueur(Joueur joueur) {
-        joueurs.remove(joueur);
+    /**
+     * Suppression d'un joueur de la liste à la phase de création des joueurs
+     * @author Mathilde Paysant
+     */
+    public void deleteJoueur() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Entrez le numéro du joueur à supprimer : ");
+        int num = scanner.nextInt();
+        for (Joueur joueur: joueurs) {
+            if (joueur.getNumero() == num) {
+                joueurs.remove(joueur);
+                break;
+            }
+        }
+    }
+
+
+    public int getNbJoueurs() {
+        return joueurs.size();
+    }
+
+    /**
+     * @return la liste des joueurs restants (non éliminés)
+     * @author Thomas Gendron
+     */
+    public Joueurs getJoueursRestants() {
+        Joueurs joueursRestants = new Joueurs();
+        for (Joueur joueur : joueurs) {
+            if (joueur.getEtat() == Etat.selectionne) {
+                joueursRestants.addJoueur(joueur);
+            }
+        }
+        return joueursRestants;
     }
 
     /**
@@ -89,5 +120,14 @@ public class Joueurs {
                 this.joueur = joueurs.get(n+1);
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Joueur joueur: joueurs) {
+            sb.append(joueur+"\n");
+        }
+        return sb.toString();
     }
 }
