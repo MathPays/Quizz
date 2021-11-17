@@ -206,7 +206,7 @@ public class Main {
 
     /**
      * Choix d'un thème tour à tour pour les joueurs restant en phase 2
-     * @return jsp encore
+     * @return la liste des joueurs et leurs choix de thèmes
      * @author Thomas Gendron
      */
 
@@ -225,32 +225,28 @@ public class Main {
             for (int integer : aleatoire) {
                 choix.add(new ArrayList<Theme>());
                 Joueur j1 = joueursSelectionnes.getJoueur(integer);
-                System.out.println(j1 + " choisi un thème parmi : ");
-                for (int i = 0; i < listeThemes.size(); i++) {
-                    System.out.println(i+1 + ") " + listeThemes.get(i));
-                }
-                Scanner scanner = new Scanner(System.in);
-                int n = scanner.nextInt();
-                if (n <= i+1) {
-                    choix.get(integer).add(listeThemes.get(n - 1));
-                    listeThemes.remove(n - 1);
-                } else {
-                    System.out.println("Thème indisponible ! \n" + j1 + " choisi un thème parmi : ");
+                boolean verify;
+                verify = false;
+                while (!verify) {
+                    System.out.println(j1 + " choisi un thème parmi : ");
+                    for (int i = 0; i < listeThemes.size(); i++) {
+                        System.out.println(i + 1 + ") " + listeThemes.get(i));
+                    }
+                    Scanner scanner = new Scanner(System.in);
+                    int n = scanner.nextInt();
+                    if (n > 0 && n <= listeThemes.size()) {
+                        choix.get(integer).add(listeThemes.get(n - 1));
+                        listeThemes.remove(n - 1);
+                        verify = true;
+                    }
+                    else {
+                        System.out.println("Thème indisponible ! \n");
+                    }
                 }
             }
         }
         return choix;
     }
-
-    /**
-     * TODO :
-     *  - Choisis un joueur aleatoirement
-     *  - Affiche nom joueur
-     *  - Affiche thème avec index+1
-     *  - Recupère nombre (= index+1)
-     *  - Ajoute thème d'index(nombre-1) à la liste joueur
-     *  - Retire thème de la liste des thèmes
-     */
 
     /**
      * TODO :
