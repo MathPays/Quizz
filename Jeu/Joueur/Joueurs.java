@@ -95,6 +95,7 @@ public class Joueurs {
                 int n = rand.nextInt(joueurs.size());
                 if (!Arrays.asList(liste).contains(n)) {
                     liste.add(n);
+                    break;
                 }
             }
         }
@@ -133,5 +134,9 @@ public class Joueurs {
             sb.append(joueur+"\n");
         }
         return sb.toString();
+    }
+
+    public ArrayList<Joueur> getJoueurs() {
+        return joueurs;
     }
 }

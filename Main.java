@@ -5,6 +5,7 @@ import Jeu.Question.Question;
 import Jeu.Question.RC;
 import Jeu.Question.VF;
 import Jeu.Theme.Theme;
+import Jeu.Theme.Themes;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,6 +14,20 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         //Définition des thèmes
+
+        ArrayList<Theme> listeThemes = creationQuestions();
+
+        Themes themes = new Themes(listeThemes,1);
+        Theme theme = themes.getNextTheme();
+        System.out.println(theme);
+
+        Joueurs joueurs = creerJoueurs();
+        joueurs.chooseRandomJoueurs();
+
+        lierQuestion(theme,1,joueurs);
+    }
+
+    public static ArrayList<Theme> creationQuestions() {
         Theme histoire = new Theme("Histoire");
         Theme geo = new Theme("Géographie");
         Theme div = new Theme("Divertissement");
@@ -25,85 +40,82 @@ public class Main {
         Theme maths = new Theme("Mathématiques");
 
         ArrayList<Theme> listeThemes = new ArrayList<Theme>();
-        listeThemes.add(histoire);
         listeThemes.add(geo);
-        listeThemes.add(div);
+        listeThemes.add(histoire);
+        /*listeThemes.add(div);
         listeThemes.add(art);
         listeThemes.add(lit);
         listeThemes.add(science);
         listeThemes.add(nature);
         listeThemes.add(sport);
         listeThemes.add(loisirs);
-        listeThemes.add(maths);
+        listeThemes.add(maths);*/
 
-        creationQuestions(listeThemes);
-
-        RC d1 = new RC("Dans quel film croise-t-on le coq Rocky chargé par Ginger la poule d'apprendre à voler à un poulailler menacé ?",1,"Chicken Run");
-
-        Joueurs joueurs = creerJoueurs();
-        choisirTheme(listeThemes, joueurs);
-    }
-
-    public static void creationQuestions(ArrayList<Theme> themes) {
         //Ajout des questions du thème Histoire
         QCM h3 = new QCM("Qui a été le premier président des États-Unis ?",1);
         h3.addReponse("George Washington");
         h3.addReponse("John Adams");
         h3.addReponse("Alexander Hamilton");
-        themes.get(0).add(h3);
+        listeThemes.get(0).add(h3);
+
         QCM h10 = new QCM("Comment appelle-t-on les hommes des cavernes ?",1);
         h10.addReponse("Diplodocus");
         h10.addReponse("Ptéranodons");
         h10.addReponse("Troglodytes");
         h10.setIndex(2);
+        listeThemes.get(0).add(h10);
+
         RC h6 = new RC("Combien d'années a duré la guerre de Cent Ans ?",1,"116");
-        themes.get(0).add(h6);
+        listeThemes.get(0).add(h6);
+
         RC h4 = new RC("En quelle année l'humanité a-t-elle posé le pied sur la Lune pour la première fois à bord du vaisseau spatial Apollo 11 ?",1,"1969");
-        themes.get(0).add(h4);
+        listeThemes.get(0).add(h4);
 
         VF h5 = new VF("Jules César a donné son nom au mois de juillet.",2,true);
-        themes.get(0).add(h5);
+        listeThemes.get(0).add(h5);
+
         QCM h7 = new QCM("Dans quelle ville vivait Marco Polo ?",2);
         h7.addReponse("Venice");
         h7.addReponse("Vienne");
         h7.addReponse("Budapest");
-        themes.get(0).add(h7);
+        listeThemes.get(0).add(h7);
+
         VF h9 = new VF("Anaximandre considérait l'eau comme un élément intégré dans toutes choses.",2,false);
-        themes.get(0).add(h9);
+        listeThemes.get(0).add(h9);
 
         RC h8 = new RC("En quelle année la Slovénie est-elle devenue indépendante de la Yougoslavie ?",3,"1991");
-        themes.get(0).add(h8);
+        listeThemes.get(0).add(h8);
+
         RC h2 = new RC("La chute de Constantinople a marqué la fin de l'Empire byzantin. En quelle année a-t-elle eu lieu ?",3,"1453");
-        themes.get(0).add(h2);
+        listeThemes.get(0).add(h2);
+
         RC h1 = new RC("Le Mozambique a été colonisé par un pays européen, lequel ?",3,"Portugal");
-        themes.get(0).add(h1);
+        listeThemes.get(0).add(h1);
 
         //Ajout des questions du thème Géographie
         VF g1 = new VF("L'Italie est le plus méridional des pays européens.",1,false);
-        themes.get(1).add(g1);
+        listeThemes.get(1).add(g1);
         QCM g3 = new QCM("Quelle est la capitale de l'Egypte ?",1);
         g3.addReponse("Le Caire");
         g3.addReponse("Alexandrie");
         g3.addReponse("Assouan");
-        themes.get(1).add(g3);
+        listeThemes.get(1).add(g3);
         RC g5 = new RC("Quel est le plus long fleuve de France ?", 1, "La Loire");
-        themes.get(1).add(g5);
+        listeThemes.get(1).add(g5);
 
         QCM g2 = new QCM("Quelle était la monnaie utilisée en Espagne avant l'euro ?",2);
         g2.addReponse("Le peseta");
         g2.addReponse("Le réal");
         g2.addReponse("Le peso");
-        themes.get(1).add(g2);
+        listeThemes.get(1).add(g2);
         QCM g4 = new QCM("De quelle origine nous vient le sauna ?",2);
         g4.addReponse("Des finlandais");
         g4.addReponse("Des indiens");
         g4.addReponse("Des australiens");
-        themes.get(1).add(g4);
-
-
+        listeThemes.get(1).add(g4);
 
         RC d1 = new RC("Dans quel film croise-t-on le coq Rocky chargé par Ginger la poule d'apprendre à voler à un poulailler menacé ?",1,"Chicken Run");
-
+        return listeThemes;
     }
 
     /**
@@ -249,17 +261,9 @@ public class Main {
     }
 
     /**
-     * TODO :
-     * lierQuestion(Theme theme, int phase) {
-     *     - recupere questions du theme selon phase
-     *     - lier question à joueur
-     *     - lancer poserQuestion
-     * }
-     *
-     * tourTheme(Themes themes) {
-     *     selectionne next theme
-     *     lierQuestion pour chaque theme
-     * }
+     * TODO Emmie :
+     * - Ajouter message de bonne réponse / mauvaise réponse
+     * - Ajouter message de quel joueur joue
      */
 
      /**
@@ -268,8 +272,14 @@ public class Main {
       * @param phase la phase du jeu
       * @author Emmie KIEFFER
       */
-     public void lierQuestion(Theme theme, int phase){
-         ArrayList<Question> listeQuestion = new ArrayList<>();
+     public static void lierQuestion(Theme theme, int phase, Joueurs joueurs){;
+         ArrayList<Question> listeQuestions = theme.getQuestions(phase);
 
+         ArrayList<Joueur> listeJoueurs = joueurs.getJoueursRestants().getJoueurs();
+         System.out.println(listeJoueurs);
+         Collections.shuffle(listeQuestions);
+         for(int i=0;i<listeJoueurs.size();i++){
+             poserQuestion(listeJoueurs.get(i),listeQuestions.get(i),phase);
+         }
      }
 }
