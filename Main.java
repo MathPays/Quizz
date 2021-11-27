@@ -38,82 +38,120 @@ public class Main {
         Theme cinema = new Theme("Cinéma");
         Theme maths = new Theme("Mathématiques");
 
-        ArrayList<Theme> listeThemes = new ArrayList<Theme>();
-        listeThemes.add(histoire);
-        listeThemes.add(geo);
-        /*listeThemes.add(div);
-        listeThemes.add(art);
-        listeThemes.add(lit);
-        listeThemes.add(science);
-        listeThemes.add(nature);
-        listeThemes.add(sport);
-        listeThemes.add(cinema);
-        listeThemes.add(maths);*/
-
         //Ajout des questions du thème Histoire
         QCM h3 = new QCM("Qui a été le premier président des États-Unis ?",1);
         h3.addReponse("George Washington");
         h3.addReponse("John Adams");
         h3.addReponse("Alexander Hamilton");
-        listeThemes.get(0).add(h3);
-
+        histoire.add(h3);
         QCM h10 = new QCM("Comment appelle-t-on les hommes des cavernes ?",1);
         h10.addReponse("Diplodocus");
         h10.addReponse("Ptéranodons");
         h10.addReponse("Troglodytes");
         h10.setIndex(2);
-        listeThemes.get(0).add(h10);
-
+        histoire.add(h10);
         RC h6 = new RC("Combien d'années a duré la guerre de Cent Ans ?",1,"116");
-        listeThemes.get(0).add(h6);
-
+        histoire.add(h6);
         RC h4 = new RC("En quelle année l'humanité a-t-elle posé le pied sur la Lune pour la première fois à bord du vaisseau spatial Apollo 11 ?",1,"1969");
-        listeThemes.get(0).add(h4);
+        histoire.add(h4);
 
         VF h5 = new VF("Jules César a donné son nom au mois de juillet.",2,true);
-        listeThemes.get(0).add(h5);
-
+        histoire.add(h5);
         QCM h7 = new QCM("Dans quelle ville vivait Marco Polo ?",2);
         h7.addReponse("Venice");
         h7.addReponse("Vienne");
         h7.addReponse("Budapest");
-        listeThemes.get(0).add(h7);
-
+        histoire.add(h7);
         VF h9 = new VF("Anaximandre considérait l'eau comme un élément intégré dans toutes choses.",2,false);
-        listeThemes.get(0).add(h9);
+        histoire.add(h9);
 
         RC h8 = new RC("En quelle année la Slovénie est-elle devenue indépendante de la Yougoslavie ?",3,"1991");
-        listeThemes.get(0).add(h8);
-
+        histoire.add(h8);
         RC h2 = new RC("La chute de Constantinople a marqué la fin de l'Empire byzantin. En quelle année a-t-elle eu lieu ?",3,"1453");
-        listeThemes.get(0).add(h2);
-
+        histoire.add(h2);
         RC h1 = new RC("Le Mozambique a été colonisé par un pays européen, lequel ?",3,"Portugal");
-        listeThemes.get(0).add(h1);
+        histoire.add(h1);
 
         //Ajout des questions du thème Géographie
         VF g1 = new VF("L'Italie est le plus méridional des pays européens.",1,false);
-        listeThemes.get(1).add(g1);
+        geo.add(g1);
         QCM g3 = new QCM("Quelle est la capitale de l'Egypte ?",1);
         g3.addReponse("Le Caire");
         g3.addReponse("Alexandrie");
         g3.addReponse("Assouan");
-        listeThemes.get(1).add(g3);
+        geo.add(g3);
         RC g5 = new RC("Quel est le plus long fleuve de France ?", 1, "La Loire");
-        listeThemes.get(1).add(g5);
+        geo.add(g5);
 
         QCM g2 = new QCM("Quelle était la monnaie utilisée en Espagne avant l'euro ?",2);
         g2.addReponse("Le peseta");
         g2.addReponse("Le réal");
         g2.addReponse("Le peso");
-        listeThemes.get(1).add(g2);
+        geo.add(g2);
         QCM g4 = new QCM("De quelle origine nous vient le sauna ?",2);
         g4.addReponse("Des finlandais");
         g4.addReponse("Des indiens");
         g4.addReponse("Des australiens");
-        listeThemes.get(1).add(g4);
+        geo.add(g4);
 
-        RC d1 = new RC("Dans quel film croise-t-on le coq Rocky chargé par Ginger la poule d'apprendre à voler à un poulailler menacé ?",1,"Chicken Run");
+
+        //Ajout des questions du thème Nature
+        QCM n1 = new QCM("Quelle est la principale plante à l'origine de la tequila ?",1);
+        n1.addReponse("L'agave");
+        n1.addReponse("Le seigle");
+        n1.addReponse("La pomme de terre");
+        n1.addReponse("L'aloe vera");
+        nature.add(n1);
+        QCM n6 = new QCM("Quelle partie de la carotte mange-t-on ?",1);
+        n6.addReponse("La racine");
+        n6.addReponse("Le fruit");
+        n6.addReponse("Les feuilles");
+        nature.add(n6);
+        RC n4 = new RC("Il existe un mois durant lequel il peut y avoir moins de quatre phases lunaire. Quel est-il ?",1,"Février");
+        nature.add(n4);
+        VF n9 = new VF("L'ornitologie est l'étude des ornithorinques.",1,false);
+        nature.add(n9);
+
+        QCM n7 = new QCM("Parmi ces métaux, lequel n'est pas précieux ?",2);
+        n7.addReponse("L'or");
+        n7.addReponse("L'argent");
+        n7.addReponse("Le plomb");
+        nature.add(n7);
+        QCM n5 = new QCM("Qu'étudie un phycologue ?",2);
+        n5.addReponse("Les algues");
+        n5.addReponse("Les coquillages");
+        n5.addReponse("Les oursins");
+        nature.add(n5);
+        VF n3 = new VF("Le règne des Fungi est un des 5 règnes lesquels les organismes vivants sont divisés",2,true);
+        nature.add(n3);
+
+        QCM n2 = new QCM("Quel oiseau se nourrit uniquement d'os ?",3);
+        n2.addReponse("L'urubu à tête rouge'");
+        n2.addReponse("Le gypaète barbu");
+        n2.addReponse("Le milan à queue fourchue");
+        n2.addReponse("L'élanien blac");
+        nature.add(n2);
+        QCM n8 = new QCM("Quel est le nom donné à l'étude des mousses ?", 3);
+        n8.addReponse("La bryologie");
+        n8.addReponse("La mycologie");
+        n8.addReponse("L'entomologie");
+        n8.addReponse("La protozoologie");
+        n8.addReponse("L'ichtyologie");
+        nature.add(n8);
+
+
+        ArrayList<Theme> listeThemes = new ArrayList<Theme>();
+        listeThemes.add(histoire);
+        listeThemes.add(geo);
+        listeThemes.add(nature);
+        /*listeThemes.add(div);
+        listeThemes.add(art);
+        listeThemes.add(lit);
+        listeThemes.add(science);
+        listeThemes.add(sport);
+        listeThemes.add(cinema);
+        listeThemes.add(maths);*/
+
         return listeThemes;
     }
 

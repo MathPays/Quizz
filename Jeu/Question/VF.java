@@ -40,6 +40,6 @@ public class VF extends Question {
 
     @Override
     public String toString() {
-        return super.toString()+"\n1) Vrai \n2)Faux";
+        return super.toString()+"\n 1) Vrai \n 2) Faux";
     }
 }

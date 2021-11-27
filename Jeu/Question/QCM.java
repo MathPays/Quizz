@@ -104,7 +104,7 @@ public class QCM extends Question {
     public String toString() {
         String result = super.toString();
         for (int i = 0; i < reponses.size(); i++) {
-            result += "\n"+(i+1)+") "+reponses.get(i);
+            result += "\n "+(i+1)+") "+reponses.get(i);
         }
         return result;
     }
