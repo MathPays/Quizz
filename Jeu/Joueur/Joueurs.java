@@ -93,12 +93,13 @@ public class Joueurs {
         for (int i = 0; i < 4; i++) {
             while (true) {
                 int n = rand.nextInt(joueurs.size());
-                if (!Arrays.asList(liste).contains(n)) {
+                if (!liste.contains(n)) {
                     liste.add(n);
                     break;
                 }
             }
         }
+        System.out.println(liste);
         for (int n : liste) {
             chosenJoueurs.addJoueur(joueurs.get(n));
             joueurs.get(n).setEtat(Etat.selectionne);

@@ -23,7 +23,6 @@ public class Main {
 
         Joueurs joueurs = creerJoueurs();
         joueurs.chooseRandomJoueurs();
-
         lierQuestion(theme,1,joueurs);
     }
 
@@ -36,19 +35,19 @@ public class Main {
         Theme science = new Theme("Science");
         Theme nature = new Theme("Nature");
         Theme sport = new Theme("Sports");
-        Theme loisirs = new Theme("Loisirs");
+        Theme cinema = new Theme("Cinéma");
         Theme maths = new Theme("Mathématiques");
 
         ArrayList<Theme> listeThemes = new ArrayList<Theme>();
-        listeThemes.add(geo);
         listeThemes.add(histoire);
+        listeThemes.add(geo);
         /*listeThemes.add(div);
         listeThemes.add(art);
         listeThemes.add(lit);
         listeThemes.add(science);
         listeThemes.add(nature);
         listeThemes.add(sport);
-        listeThemes.add(loisirs);
+        listeThemes.add(cinema);
         listeThemes.add(maths);*/
 
         //Ajout des questions du thème Histoire
@@ -170,14 +169,19 @@ public class Main {
                 switch (phase) {
                     case(1):
                         joueur.ajouterScore(POINT_PHASE_1);
+                        System.out.println("Bonne réponse ! "+joueur.getNom()+" gagne "+POINT_PHASE_1+" points.\n");
                         break;
                     case(2):
                         joueur.ajouterScore(POINT_PHASE_2);
+                        System.out.println("Bonne réponse ! "+joueur.getNom()+" gagne "+POINT_PHASE_2+" points.\n");
                         break;
                     case(3):
                         joueur.ajouterScore(POINT_PHASE_3);
+                        System.out.println("Bonne réponse ! "+joueur.getNom()+" gagne "+POINT_PHASE_3+" points.\n");
                         break;
                 }
+            } else {
+                System.out.println("Mauvaise réponse ! "+joueur.getNom()+" ne gagne aucun point.\n");
             }
         }
         else if (question instanceof RC){
@@ -187,14 +191,19 @@ public class Main {
                 switch (phase) {
                     case(1):
                         joueur.ajouterScore(POINT_PHASE_1);
+                        System.out.println("Bonne réponse ! "+joueur.getNom()+" gagne "+POINT_PHASE_1+" points.\n");
                         break;
                     case(2):
                         joueur.ajouterScore(POINT_PHASE_2);
+                        System.out.println("Bonne réponse ! "+joueur.getNom()+" gagne "+POINT_PHASE_2+" points.\n");
                         break;
                     case(3):
                         joueur.ajouterScore(POINT_PHASE_3);
+                        System.out.println("Bonne réponse ! "+joueur.getNom()+" gagne "+POINT_PHASE_3+" points.\n");
                         break;
                 }
+            } else {
+                System.out.println("Mauvaise réponse ! "+joueur.getNom()+" ne gagne aucun point.\n");
             }
         }
         else if(question instanceof VF){
@@ -204,14 +213,19 @@ public class Main {
                 switch (phase) {
                     case(1):
                         joueur.ajouterScore(POINT_PHASE_1);
+                        System.out.println("Bonne réponse ! "+joueur.getNom()+" gagne "+POINT_PHASE_1+" points.\n");
                         break;
                     case(2):
                         joueur.ajouterScore(POINT_PHASE_2);
+                        System.out.println("Bonne réponse ! "+joueur.getNom()+" gagne "+POINT_PHASE_2+" points.\n");
                         break;
                     case(3):
                         joueur.ajouterScore(POINT_PHASE_3);
+                        System.out.println("Bonne réponse ! "+joueur.getNom()+" gagne "+POINT_PHASE_3+" points.\n");
                         break;
                 }
+            } else {
+                System.out.println("Mauvaise réponse ! "+joueur.getNom()+" ne gagne aucun point.\n");
             }
         }
     }
@@ -240,7 +254,7 @@ public class Main {
                 boolean verify;
                 verify = false;
                 while (!verify) {
-                    System.out.println(j1 + " choisi un thème parmi : ");
+                    System.out.println(j1.getNom() + ", choisissez un thème parmi : ");
                     for (int i = 0; i < listeThemes.size(); i++) {
                         System.out.println(i + 1 + ") " + listeThemes.get(i));
                     }
@@ -260,12 +274,6 @@ public class Main {
         return choix;
     }
 
-    /**
-     * TODO Emmie :
-     * - Ajouter message de bonne réponse / mauvaise réponse
-     * - Ajouter message de quel joueur joue
-     */
-
      /**
       * Lier les question au joueurs pour ensuite leur poser
       * @param theme le theme des questions
@@ -279,6 +287,7 @@ public class Main {
          System.out.println(listeJoueurs);
          Collections.shuffle(listeQuestions);
          for(int i=0;i<listeJoueurs.size();i++){
+             System.out.println(listeJoueurs.get(i).getNom()+", à vous de jouer !");
              poserQuestion(listeJoueurs.get(i),listeQuestions.get(i),phase);
          }
      }

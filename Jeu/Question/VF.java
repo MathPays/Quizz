@@ -30,7 +30,9 @@ public class VF extends Question {
      * @author Mathilde Paysant
      */
     public boolean verifier(int reponse) {
-        if ((reponse == 1 && this.reponse) || (reponse == 2 && !this.reponse)) {
+        if (this.reponse && reponse == 1) {
+            return true;
+        } else if (!this.reponse && reponse == 2) {
             return true;
         }
         return false;

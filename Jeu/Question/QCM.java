@@ -94,7 +94,7 @@ public class QCM extends Question {
         System.out.println(result.toString());
         for (int i = 0; i < liste.size(); i++) {
             if (liste.get(i).equals(reponses.get(index))) {
-                return i;
+                return i+1;
             }
         }
         return -1;

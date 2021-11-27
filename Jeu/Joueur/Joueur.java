@@ -31,6 +31,10 @@ public class Joueur {
         this.etat = Etat.enAttente;
     }
 
+    public String getNom() {
+        return nom;
+    }
+
     public void setEtat(Etat etat) {
         this.etat = etat;
     }

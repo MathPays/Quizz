@@ -35,7 +35,7 @@ public class RC extends Question {
      * @author Mathilde Paysant
      */
     public boolean verifier(String reponse) {
-        if (this.reponse == reponse) {
+        if (this.reponse.equals(reponse)) {
             return true;
         }
         return false;
