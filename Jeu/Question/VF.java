@@ -38,6 +38,17 @@ public class VF extends Question {
         return false;
     }
 
+    public boolean reponseIA() {
+        int r = (int) Math.random() * (2 - 0);
+        if (r == 1) {
+            System.out.println(r);
+            return true;
+        } else {
+            System.out.println(r);
+            return false;
+        }
+    }
+
     @Override
     public String toString() {
         return super.toString()+"\n 1) Vrai \n 2) Faux";

@@ -108,4 +108,13 @@ public class QCM extends Question {
         }
         return result;
     }
+
+    public boolean reponseIA(int bonne) {
+        int r = (int) (Math.random() * ( reponses.size() - 0 ));
+        System.out.println(r);
+        if (r == bonne) {
+            return true;
+        }
+        return false;
+    }
 }

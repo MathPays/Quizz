@@ -1,5 +1,7 @@
 package Jeu.Joueur;
 
+import java.util.Random;
+
 /**
  * Liste des joueurs de la partie
  * int numero : Numéro unique du joueur
@@ -27,6 +29,22 @@ public class Joueur {
         this.numero = nombre;
         this.nombre += 10;
         this.nom = nom;
+        this.score = 0;
+        this.etat = Etat.enAttente;
+    }
+
+    /**
+     * Constructeur de la classe Joueur.
+     * N'est utilisé que pour la création d'une IA car nom aléatoire
+     * @author Mathilde Paysant
+     */
+    public Joueur() {
+        String noms[] = { "HAL", "DoD", "Three", "Four", "Five", "Six" };
+        Random Dice = new Random();
+        int n = Dice.nextInt(noms.length);
+        this.nom = noms[n];
+        this.numero = nombre;
+        this.nombre += 10;
         this.score = 0;
         this.etat = Etat.enAttente;
     }

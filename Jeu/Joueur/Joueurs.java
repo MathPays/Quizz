@@ -43,6 +43,16 @@ public class Joueurs {
     }
 
     /**
+     * Création d'une IA ainsi qu'ajout à la liste de joueurs
+     * @author Mathilde Paysant
+     */
+    public void creerIA() {
+        IA ia = new IA();
+        joueurs.add(ia);
+        System.out.println("Le joueur "+ia.getNom()+" a été ajouté.\n");
+    }
+
+    /**
      * Suppression d'un joueur de la liste à la phase de création des joueurs
      * @author Mathilde Paysant
      */

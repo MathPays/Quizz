@@ -45,4 +45,15 @@ public class RC extends Question {
     public String toString() {
         return super.toString() + "\n Répondez en tapant votre réponse.";
     }
+
+    public boolean reponseIA() {
+        int r = (int) Math.random() * (10 - 0);
+        if (r == 0) {
+            System.out.println(reponse);
+            return true;
+        } else {
+            System.out.println("Je ne sais pas.");
+            return false;
+        }
+    }
 }
