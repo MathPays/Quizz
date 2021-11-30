@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author Mathilde Paysant
  */
 public class Theme {
-    private String nom;
+    private final String nom;
     private boolean selection;
     private ArrayList<Question> questions;
 

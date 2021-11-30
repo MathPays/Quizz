@@ -18,12 +18,10 @@ import java.util.Scanner;
     - Ajouter une fonction toString affichant tous les joueurs de la partie
  */
 public class Joueurs {
-    private ArrayList<Joueur> joueurs;
-    private Joueur joueur;
+    private final ArrayList<Joueur> joueurs;
 
     public Joueurs() {
         this.joueurs = new ArrayList<Joueur>();
-        this.joueur = null;
     }
 
     public void addJoueur(Joueur joueur) {
@@ -115,27 +113,6 @@ public class Joueurs {
             joueurs.get(n).setEtat(Etat.selectionne);
         }
         return chosenJoueurs;
-    }
-
-    public Joueur getJoueur() {
-        return joueur;
-    }
-
-    /**
-     * Change le joueur dont c'est le tour
-     * @author Emmie Kieffer
-     */
-    public void nextJoueur() {
-        if (joueur == null) {
-            this.joueur = joueurs.get(0);
-        } else {
-            int n = joueurs.indexOf(joueur);
-            if (n == joueurs.size()-1) {
-                this.joueur = joueurs.get(0);
-            } else {
-                this.joueur = joueurs.get(n+1);
-            }
-        }
     }
 
     @Override

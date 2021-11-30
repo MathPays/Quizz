@@ -14,8 +14,8 @@ import java.util.Random;
 public class Joueur {
     public static int nombre = 100;
 
-    private int numero;
-    private String nom;
+    private final int numero;
+    private final String nom;
     private int score;
     private Etat etat;
 

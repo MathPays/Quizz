@@ -20,13 +20,14 @@ public class Main {
         ArrayList<Theme> listeThemes = CreationQuestions.creationQuestions();
 
         Themes themes = new Themes(listeThemes,1);
-        Theme theme = themes.getNextTheme();
-        System.out.println(theme);
 
         Joueurs joueurs = creerJoueurs();
         joueurs.chooseRandomJoueurs();
-        choisirTheme(listeThemes,joueurs.getJoueursRestants());
-        //lierQuestion(theme,1,joueurs);
+        while (true) {
+            Theme theme = themes.getNextTheme();
+            lierQuestion(theme,1,joueurs);
+        }
+        //
     }
 
     /**
@@ -171,8 +172,11 @@ public class Main {
         choix.add(new ArrayList<Theme>());
         choix.add(new ArrayList<Theme>());
         choix.add(new ArrayList<Theme>());
-        while (!listeThemes.isEmpty()) {
+        while (true) {
             for (int integer : aleatoire) {
+                if (listeThemes.isEmpty()) {
+                    return choix;
+                }
                 choix.add(new ArrayList<Theme>());
                 Joueur j1 = joueursSelectionnes.getJoueur(integer);
                 boolean verify;
@@ -208,8 +212,8 @@ public class Main {
                     }
                 }
             }
+            System.out.println(listeThemes);
         }
-        return choix;
     }
 
      /**
@@ -222,7 +226,6 @@ public class Main {
          ArrayList<Question> listeQuestions = theme.getQuestions(phase);
 
          ArrayList<Joueur> listeJoueurs = joueurs.getJoueursRestants().getJoueurs();
-         System.out.println(listeJoueurs);
          Collections.shuffle(listeQuestions);
          for(int i=0;i<listeJoueurs.size();i++){
              System.out.println(listeJoueurs.get(i).getNom()+", à vous de jouer !");

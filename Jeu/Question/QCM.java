@@ -49,9 +49,6 @@ public class QCM extends Question {
 
     public void deleteReponse(int index) {
         ArrayList<String> newReponses = new  ArrayList<String>();
-        if (index >= reponses.size()) {
-            return;
-        }
         for (int i = 0; i < reponses.size(); i++) {
             if (i != index) {
                 newReponses.add(reponses.get(i));
@@ -69,8 +66,6 @@ public class QCM extends Question {
     public void setIndex(int index) {
         if (index < reponses.size()) {
             this.index = index;
-        } else {
-            System.out.println("Erreur, l'index de la réponse est incorrect.");
         }
     }
 

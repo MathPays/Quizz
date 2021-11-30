@@ -13,7 +13,7 @@ package Jeu.Question;
     - Possibilité de ne pas prendre en compte la casse de la réponse fournie
  */
 public class RC extends Question {
-    private String reponse;
+    private final String reponse;
 
     /**
      * Constructeur de la classe RC

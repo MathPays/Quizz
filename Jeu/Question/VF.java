@@ -8,7 +8,7 @@ package Jeu.Question;
  */
 
 public class VF extends Question {
-    private boolean reponse;
+    private final boolean reponse;
 
     /**
      * Constructeur de la classe VF
