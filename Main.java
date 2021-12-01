@@ -187,7 +187,8 @@ public class Main {
                         System.out.println(i + 1 + ") " + listeThemes.get(i));
                     }
                     Random r = new Random();
-                    int n = r.nextInt(listeThemes.size());
+                    //int n = r.nextInt(listeThemes.size());
+                    int n = r.nextInt(listeThemes.size()-1) + 1;
                     System.out.println(n);
                     if (n > 0 && n <= listeThemes.size()) {
                         choix.get(integer).add(listeThemes.get(n - 1));
@@ -220,6 +221,7 @@ public class Main {
       * Lier les question au joueurs pour ensuite leur poser
       * @param theme le theme des questions
       * @param phase la phase du jeu
+      * @param joueurs la liste des joueurs selectionnes
       * @author Emmie KIEFFER
       */
      public static void lierQuestion(Theme theme, int phase, Joueurs joueurs){;

@@ -91,11 +91,9 @@ public class Joueurs {
 
     /**
      * Choix de 4 joueurs dans la liste des joueurs au hasard pour une partie
-     * @return liste des 4 joueurs selectionnés
      * @author Mathilde Paysant
      */
-    public Joueurs chooseRandomJoueurs() {
-        Joueurs chosenJoueurs = new Joueurs();
+    public void chooseRandomJoueurs() {
         Random rand = new Random();
         ArrayList<Integer> liste = new ArrayList<Integer>();
         for (int i = 0; i < 4; i++) {
@@ -107,12 +105,26 @@ public class Joueurs {
                 }
             }
         }
-        System.out.println(liste);
         for (int n : liste) {
-            chosenJoueurs.addJoueur(joueurs.get(n));
             joueurs.get(n).setEtat(Etat.selectionne);
         }
-        return chosenJoueurs;
+    }
+
+    /**
+     * Elimination du joueur ayant le score le plus bas
+     * @author Mathilde Paysant
+     */
+    public void elimineDernier() {
+        int index = 0;
+        int score = -1;
+        for (int i =0; i < joueurs.size(); i++) {
+            if ((joueurs.get(i).getScore() < score || score == 1) && joueurs.get(i).getEtat().equals(Etat.selectionne)) {
+                score = joueurs.get(i).getScore();
+                index = i;
+            }
+        }
+        joueurs.get(index).setEtat(Etat.elimine);
+        System.out.println(joueurs.get(index).getNom()+" a été éliminé.");
     }
 
     @Override

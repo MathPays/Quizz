@@ -68,6 +68,12 @@ public class Joueur {
         return numero;
     }
 
+    /////
+    public int getScore() {
+        return score;
+    }
+    ////
+
     @Override
     public String toString() {
         return nom+" (joueur "+numero+") : "+score+" points ["+etat+"]";
