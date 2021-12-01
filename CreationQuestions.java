@@ -349,6 +349,41 @@ public class CreationQuestions {
         RC a9 = new RC("Qui a été la première personne vivante à avoir vu ses œuvres exposées au Louvre ?",3,"Georges Braque");
         art.add(a9);
 
+        QCM d7 = new QCM("Dans l'émission Bonne nuit les petits, de quel instrument joue le Marchand de sable ?",1);
+        d7.addReponse("Une flûte à bec");
+        d7.addReponse("Une flûte de pan");
+        d7.addReponse("Un ukulele");
+        d7.addReponse("Une guitare");
+        div.add(d7);
+        QCM d2 = new QCM(" Avec quel rappeur Patrick Bruel a-t-il chanté Maux d'enfants ?",1);
+        d2.addReponse("La Fouine");
+        d2.addReponse("Maitre Gims");
+        div.add(d2);
+        RC d3 = new RC("Combien Barbamama et Barbapapa ont-ils d'enfants ?",1,"7");
+        div.add(d3);
+        QCM d5 = new QCM("Dans Super Size Me, dans quel restaurant le réalisateur Morgan Spurlock a-t-il mangé pendant 30 jours ?",1);
+        d5.addReponse("McDonald");
+        d5.addReponse("KFC");
+        d5.addReponse("Burger King");
+        d5.addReponse("Quick");
+        div.add(d5);
+
+        QCM d4 = new QCM("Dans Monty Python : Sacré Graal que disent les chevaliers qui exigent un jardinet ?",2);
+        d4.addReponse("Ni");
+        d4.addReponse("No");
+        d4.addReponse("Na");
+        d4.addReponse("Ne");
+        div.add(d4);
+        RC d6 = new RC("Dans l'émission Le Maillon faible, que disait Laurence Boccolini en cas de bonne réponse ?",2,"Correct");
+        div.add(d6);
+        RC d1 = new RC("Avec quel chanteur Laeticia Boudou a-t-elle adopté Jade en 2005, puis Joy en 2009 ?",1,"Johnny Hallyday");
+        div.add(d1);
+
+        RC d8 = new RC("Dans la chanson de Nena, combien y a-t-il de ballons rouges ?",3,"99");
+        div.add(d8);
+        RC d9 = new RC("Dans sa chanson « Le Dîner », que voudrait commander Bénabar, plutôt que de sortir dîner chez ses amis ?",3,"Des pizzas");
+        div.add(d9);
+
         ArrayList<Theme> listeThemes = new ArrayList<Theme>();
         listeThemes.add(histoire);
         listeThemes.add(geo);
@@ -359,7 +394,7 @@ public class CreationQuestions {
         listeThemes.add(maths);
         listeThemes.add(sport);
         listeThemes.add(art);
-        /*listeThemes.add(div);*/
+        listeThemes.add(div);
 
         return listeThemes;
     }
