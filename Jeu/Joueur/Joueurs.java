@@ -18,14 +18,17 @@ import java.util.Scanner;
     - Ajouter une fonction toString affichant tous les joueurs de la partie
  */
 public class Joueurs {
-    private final ArrayList<Joueur> joueurs;
+    private final Joueur [] joueurs;
+    private int index;
 
     public Joueurs() {
-        this.joueurs = new ArrayList<Joueur>();
+        this.joueurs = new Joueur[20];
+        this.index = 0;
     }
 
     public void addJoueur(Joueur joueur) {
-        joueurs.add(joueur);
+        joueurs[index] = joueur;
+        index++;
     }
 
     /**
@@ -36,8 +39,13 @@ public class Joueurs {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Entrez le nom du joueur :");
         String nom = scanner.nextLine();
-        joueurs.add(new Joueur(nom));
-        System.out.println("Le joueur "+nom+" a été ajouté.\n");
+        try {
+            joueurs[index] = new Joueur(nom);
+            index++;
+            System.out.println("Le joueur "+nom+" a été ajouté.\n");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Le nombre maximal de joueurs a été atteint.");
+        }
     }
 
     /**
@@ -46,14 +54,20 @@ public class Joueurs {
      */
     public void creerIA() {
         IA ia = new IA();
-        joueurs.add(ia);
-        System.out.println("Le joueur "+ia.getNom()+" a été ajouté.\n");
+        try {
+            joueurs[index] = ia;
+            index++;
+            System.out.println("Le joueur "+ia.getNom()+" a été ajouté.\n");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Le nombre maximal de joueurs a été atteint.");
+        }
     }
 
     /**
      * Suppression d'un joueur de la liste à la phase de création des joueurs
      * @author Mathilde Paysant
      */
+    /*
     public void deleteJoueur() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Entrez le numéro du joueur à supprimer : ");
@@ -64,11 +78,11 @@ public class Joueurs {
                 break;
             }
         }
-    }
+    }*/
 
 
     public int getNbJoueurs() {
-        return joueurs.size();
+        return joueurs.length;
     }
 
     /**
@@ -77,16 +91,16 @@ public class Joueurs {
      */
     public Joueurs getJoueursRestants() {
         Joueurs joueursRestants = new Joueurs();
-        for (Joueur joueur : joueurs) {
-            if (joueur.getEtat() == Etat.selectionne) {
-                joueursRestants.addJoueur(joueur);
+        for (int i =0; i < index;i++) {
+            if (joueurs[i].getEtat() == Etat.selectionne) {
+                joueursRestants.addJoueur(joueurs[i]);
             }
         }
         return joueursRestants;
     }
 
     public Joueur getJoueur(int index) {
-        return joueurs.get(index);
+        return joueurs[index];
     }
 
     /**
@@ -98,7 +112,7 @@ public class Joueurs {
         ArrayList<Integer> liste = new ArrayList<Integer>();
         for (int i = 0; i < 4; i++) {
             while (true) {
-                int n = rand.nextInt(joueurs.size());
+                int n = rand.nextInt(index);
                 if (!liste.contains(n)) {
                     liste.add(n);
                     break;
@@ -106,7 +120,16 @@ public class Joueurs {
             }
         }
         for (int n : liste) {
-            joueurs.get(n).setEtat(Etat.selectionne);
+            System.out.println(n);
+            joueurs[n].setEtat(Etat.selectionne);
+        }
+    }
+
+
+    public void eliminePhase(int phase) {
+        switch (phase) {
+            case 1:
+
         }
     }
 
@@ -117,14 +140,14 @@ public class Joueurs {
     public void elimineDernier() {
         int index = 0;
         int score = -1;
-        for (int i =0; i < joueurs.size(); i++) {
-            if ((joueurs.get(i).getScore() < score || score == 1) && joueurs.get(i).getEtat().equals(Etat.selectionne)) {
-                score = joueurs.get(i).getScore();
+        for (int i =0; i < joueurs.length; i++) {
+            if ((joueurs[i].getScore() < score || score == 1) && joueurs[i].getEtat().equals(Etat.selectionne)) {
+                score = joueurs[i].getScore();
                 index = i;
             }
         }
-        joueurs.get(index).setEtat(Etat.elimine);
-        System.out.println(joueurs.get(index).getNom()+" a été éliminé.");
+        joueurs[index].setEtat(Etat.elimine);
+        System.out.println(joueurs[index].getNom()+" a été éliminé.");
     }
 
     @Override
@@ -136,7 +159,7 @@ public class Joueurs {
         return sb.toString();
     }
 
-    public ArrayList<Joueur> getJoueurs() {
+    public Joueur[] getJoueurs() {
         return joueurs;
     }
 }

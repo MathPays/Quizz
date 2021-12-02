@@ -3,6 +3,7 @@ package Jeu.Theme;
 import Jeu.Question.Question;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Groupe de question d'un theme
@@ -50,6 +51,11 @@ public class Theme {
 
     public boolean getSelection() {
         return selection;
+    }
+
+
+    public Question getRandomQuestion(int phase) {
+        return getQuestions(2).get(new Random().nextInt(getQuestions(2).size()));
     }
 
     @Override

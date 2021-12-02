@@ -8,10 +8,6 @@ package Jeu.Question;
  * @author Mathilde Paysant
  */
 
-/*
-    TODO :
-    - Possibilité de ne pas prendre en compte la casse de la réponse fournie
- */
 public class RC extends Question {
     private final String reponse;
 

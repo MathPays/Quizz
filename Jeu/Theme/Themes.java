@@ -66,7 +66,9 @@ public class Themes {
         return theme;
     }
 
-    
+    public ArrayList<Theme> getThemes() {
+        return themes;
+    }
 
     @Override
     public String toString() {

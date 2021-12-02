@@ -8,10 +8,7 @@ import Jeu.Question.VF;
 import Jeu.Theme.Theme;
 import Jeu.Theme.Themes;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,15 +16,12 @@ public class Main {
 
         ArrayList<Theme> listeThemes = CreationQuestions.creationQuestions();
 
-        Themes themes = new Themes(listeThemes,1);
+        Themes themes = new Themes(listeThemes,2);
+        System.out.println(themes);
 
         Joueurs joueurs = creerJoueurs();
         joueurs.chooseRandomJoueurs();
-        while (true) {
-            Theme theme = themes.getNextTheme();
-            lierQuestion(theme,1,joueurs);
-        }
-        //
+        choisirTheme(themes,joueurs.getJoueursRestants());
     }
 
     /**
@@ -40,34 +34,41 @@ public class Main {
         while (true) {
             Scanner scanner =new Scanner(System.in);
             System.out.println("Que souhaitez vous faire ?\n 1) Ajouter un joueur\n 2) Supprimer un joueur \n 3) Afficher les joueurs \n 4) Ajouter une IA \n 5) Lancer la partie");
-            int n = scanner.nextInt();
-            switch (n) {
-                case 1 :
-                    joueurs.creerJoueur();
-                    break;
-                case 2 :
-                    System.out.println(joueurs);
-                    joueurs.deleteJoueur();
-                    break;
-                case 3 :
-                    System.out.println(joueurs+"\n");
-                    break;
-                case 4 :
-                    joueurs.creerIA();
-                    break;
-                case 5 :
-                    if (joueurs.getNbJoueurs() >= 4) {
-                        System.out.println("Lancement de la partie...\n");
-                        return joueurs;
-                    } else {
-                        System.out.println("Nombre de joueurs insuffisants, ajoutez des joueurs.\n");
-                    }
+            try {
+                int n = scanner.nextInt();
+                switch (n) {
+                    case 1 :
+                        joueurs.creerJoueur();
+                        break;
+                    case 2 :
+                        System.out.println(joueurs);
+                        //joueurs.deleteJoueur();
+                        break;
+                    case 3 :
+                        System.out.println(joueurs+"\n");
+                        break;
+                    case 4 :
+                        joueurs.creerIA();
+                        break;
+                    case 5 :
+                        if (joueurs.getNbJoueurs() >= 4) {
+                            System.out.println("Lancement de la partie...\n");
+                            return joueurs;
+                        } else {
+                            System.out.println("Nombre de joueurs insuffisants, ajoutez des joueurs.\n");
+                        }
+                        break;
+                    default:
+                        System.out.println("Entrez un nombre valide.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Entrez un nombre valide.");
             }
         }
     }
 
     /**
-     * Affiche et incrémente le scores des joueurs
+     * Affiche et incrémente le score des joueurs
      * @param joueur joueur en cours
      * @param phase phase du jeu
      * @author Emmie Kieffer
@@ -162,20 +163,23 @@ public class Main {
      * @return la liste des joueurs et leurs choix de thèmes
      * @author Thomas Gendron
      */
-    public static ArrayList<ArrayList> choisirTheme(ArrayList<Theme> listeThemes, Joueurs joueursSelectionnes) {
+    public static void choisirTheme(Themes themes, Joueurs joueursSelectionnes) {
+        ArrayList<Theme> listeThemes = themes.getThemes();
         ArrayList<Integer> aleatoire = new ArrayList<>();
         aleatoire.add(0);
         aleatoire.add(1);
         aleatoire.add(2);
         Collections.shuffle(aleatoire);
-        ArrayList<ArrayList> choix = new ArrayList<>();
+        ArrayList<ArrayList<Theme>> choix = new ArrayList<>();
         choix.add(new ArrayList<Theme>());
         choix.add(new ArrayList<Theme>());
         choix.add(new ArrayList<Theme>());
         while (true) {
             for (int integer : aleatoire) {
                 if (listeThemes.isEmpty()) {
-                    return choix;
+                    System.out.println(choix);
+                    lierQuestions(choix, joueursSelectionnes);
+                    return;
                 }
                 choix.add(new ArrayList<Theme>());
                 Joueur j1 = joueursSelectionnes.getJoueur(integer);
@@ -187,7 +191,6 @@ public class Main {
                         System.out.println(i + 1 + ") " + listeThemes.get(i));
                     }
                     Random r = new Random();
-                    //int n = r.nextInt(listeThemes.size());
                     int n = r.nextInt(listeThemes.size()-1) + 1;
                     System.out.println(n);
                     if (n > 0 && n <= listeThemes.size()) {
@@ -217,8 +220,23 @@ public class Main {
         }
     }
 
+    /**
+     * Lier les questions dans les thèmes choisis aux joueurs
+     * @param choix choix des themes par joueur
+     * @param joueursSelectionnes joueurs en jeu
+     */
+    public static void lierQuestions(ArrayList<ArrayList<Theme>> choix, Joueurs joueursSelectionnes) {
+        Joueur[] joueurs = joueursSelectionnes.getJoueurs();
+        for (int i =0; i < 3; i++) {
+            for (Theme theme:choix.get(i)) {
+                System.out.println(joueurs[i].getNom()+", à vous de jouer !");
+                poserQuestion(joueurs[i], theme.getRandomQuestion(2), 2);
+            }
+        }
+    }
+
      /**
-      * Lier les question au joueurs pour ensuite leur poser
+      * Lier les questions aux joueurs pour ensuite leur poser
       * @param theme le theme des questions
       * @param phase la phase du jeu
       * @param joueurs la liste des joueurs selectionnes
@@ -227,11 +245,11 @@ public class Main {
      public static void lierQuestion(Theme theme, int phase, Joueurs joueurs){;
          ArrayList<Question> listeQuestions = theme.getQuestions(phase);
 
-         ArrayList<Joueur> listeJoueurs = joueurs.getJoueursRestants().getJoueurs();
+         Joueur[] listeJoueurs = joueurs.getJoueursRestants().getJoueurs();
          Collections.shuffle(listeQuestions);
-         for(int i=0;i<listeJoueurs.size();i++){
-             System.out.println(listeJoueurs.get(i).getNom()+", à vous de jouer !");
-             poserQuestion(listeJoueurs.get(i),listeQuestions.get(i),phase);
+         for(int i=0;i<listeJoueurs.length;i++){
+             System.out.println(listeJoueurs[i].getNom()+", à vous de jouer !");
+             poserQuestion(listeJoueurs[i],listeQuestions.get(i),phase);
          }
      }
 }
