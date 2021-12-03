@@ -11,18 +11,44 @@ import Jeu.Theme.Themes;
 import java.util.*;
 
 public class Main {
+    /**
+     * Main regroupant les fonctions : gestions de la partie
+     * @author Antoine AOUAT
+     */
     public static void main(String[] args) {
-        //Définition des thèmes
-
         ArrayList<Theme> listeThemes = CreationQuestions.creationQuestions();
-
-        Themes themes = new Themes(listeThemes,2);
-        System.out.println(themes);
-
         Joueurs joueurs = creerJoueurs();
         joueurs.chooseRandomJoueurs();
+
+        /**
+         * PHASE 1
+         */
+        Themes themes = new Themes(listeThemes, 1);
+
+        for (int i = 0; i < 10; i++){
+            lierQuestion(themes.getNextTheme(), 1, joueurs);
+        }
+        System.out.println(joueurs);
+        //joueurs = Joueurs.elimineDernier();
+
+        /**
+         * PHASE 2 Marche pour Vrai joueurs mais pas IA  TO DO : elim
+         */
+
+        themes = new Themes(listeThemes, 2);
+        System.out.println(themes);
         choisirTheme(themes,joueurs.getJoueursRestants());
-    }
+
+        /**
+         * PHASE 3
+         */
+    /*
+        Themes themes3 = new Themes(listeThemes, 3);
+        System.out.println(themes3);
+        choisirTheme(themes3,joueurs.getJoueursRestants());
+        */
+            //
+        }
 
     /**
      * Permet à l'utilisateur de creer des joueurs
@@ -191,7 +217,10 @@ public class Main {
                         System.out.println(i + 1 + ") " + listeThemes.get(i));
                     }
                     Random r = new Random();
-                    int n = r.nextInt(listeThemes.size()-1) + 1;
+                    int n = 1;
+                    if (listeThemes.size() > 1) {
+                        n = r.nextInt(listeThemes.size()-1) + 1;
+                    }
                     System.out.println(n);
                     if (n > 0 && n <= listeThemes.size()) {
                         choix.get(integer).add(listeThemes.get(n - 1));
@@ -247,7 +276,8 @@ public class Main {
 
          Joueur[] listeJoueurs = joueurs.getJoueursRestants().getJoueurs();
          Collections.shuffle(listeQuestions);
-         for(int i=0;i<listeJoueurs.length;i++){
+         for(int i=0;i<4;i++){
+             System.out.println(i);
              System.out.println(listeJoueurs[i].getNom()+", à vous de jouer !");
              poserQuestion(listeJoueurs[i],listeQuestions.get(i),phase);
          }
