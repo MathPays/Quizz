@@ -29,7 +29,7 @@ public class Main {
             lierQuestion(themes.getNextTheme(), 1, joueurs);
         }
         System.out.println(joueurs);
-        //joueurs = Joueurs.elimineDernier();
+        joueurs.elimineDernier();
 
         /**
          * PHASE 2 Marche pour Vrai joueurs mais pas IA  TO DO : elim
@@ -38,6 +38,8 @@ public class Main {
         themes = new Themes(listeThemes, 2);
         System.out.println(themes);
         choisirTheme(themes,joueurs.getJoueursRestants());
+        System.out.println(joueurs);
+        joueurs.elimineDernier();
 
         /**
          * PHASE 3

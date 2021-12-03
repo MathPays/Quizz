@@ -120,7 +120,6 @@ public class Joueurs {
             }
         }
         for (int n : liste) {
-            System.out.println(n);
             joueurs[n].setEtat(Etat.selectionne);
         }
     }
@@ -140,8 +139,8 @@ public class Joueurs {
     public void elimineDernier() {
         int index = 0;
         int score = -1;
-        for (int i =0; i < joueurs.length; i++) {
-            if ((joueurs[i].getScore() < score || score == 1) && joueurs[i].getEtat().equals(Etat.selectionne)) {
+        for (int i =0; i < this.index; i++) {
+            if ((joueurs[i].getScore() < score || score == -1) && joueurs[i].getEtat().equals(Etat.selectionne)) {
                 score = joueurs[i].getScore();
                 index = i;
             }
@@ -154,7 +153,11 @@ public class Joueurs {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Joueur joueur: joueurs) {
-            sb.append(joueur+"\n");
+            if (joueur != null) {
+                sb.append(joueur+"\n");
+            } else {
+                return sb.toString();
+            }
         }
         return sb.toString();
     }
