@@ -15,5 +15,29 @@ package Jeu.Joueur;
     - Ajouter un toString à chaque état
  */
 public enum Etat {
-    selectionne, gagnant, superGagnant, elimine, enAttente;
+    selectionne {
+        @Override
+        public String toString() {
+            return "sélectionné";
+        }
+    },
+    gagnant,
+    superGagnant {
+        @Override
+        public String toString() {
+            return "grand gagnant";
+        }
+    },
+    elimine {
+        @Override
+        public String toString() {
+            return "éliminé";
+        }
+    },
+    enAttente {
+        @Override
+        public String toString() {
+            return "en attente";
+        }
+    };
 }
