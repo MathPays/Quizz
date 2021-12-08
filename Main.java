@@ -28,7 +28,6 @@ public class Main {
         for (int i = 0; i < 10; i++){
             lierQuestion(themes.getNextTheme(), 1, joueurs);
         }
-        System.out.println(joueurs);
         joueurs.elimineDernier();
 
         /**
@@ -36,21 +35,18 @@ public class Main {
          */
 
         themes = new Themes(listeThemes, 2);
-        System.out.println(themes);
         choisirTheme(themes,joueurs.getJoueursRestants());
-        System.out.println(joueurs);
         joueurs.elimineDernier();
 
         /**
          * PHASE 3
          */
-    /*
-        Themes themes3 = new Themes(listeThemes, 3);
-        System.out.println(themes3);
-        choisirTheme(themes3,joueurs.getJoueursRestants());
-        */
-            //
+        themes = new Themes(listeThemes, 3);
+        for (int i = 0; i < 3; i++){
+            lierQuestion(themes.getNextTheme(), 3, joueurs);
         }
+        joueurs.elimineDernier();
+    }
 
     /**
      * Permet à l'utilisateur de creer des joueurs
@@ -132,7 +128,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         //si le joueur est une IA
         if (joueur instanceof IA) {
-            System.out.println("IA");
             if (question instanceof QCM) {
                 int i = ((QCM) question).afficherQuestion();
                 if (((QCM) question).reponseIA(i)) {
@@ -205,7 +200,6 @@ public class Main {
         while (true) {
             for (int integer : aleatoire) {
                 if (listeThemes.isEmpty()) {
-                    System.out.println(choix);
                     lierQuestions(choix, joueursSelectionnes);
                     return;
                 }
@@ -223,7 +217,6 @@ public class Main {
                     if (listeThemes.size() > 1) {
                         n = r.nextInt(listeThemes.size()-1) + 1;
                     }
-                    System.out.println(n);
                     if (n > 0 && n <= listeThemes.size()) {
                         choix.get(integer).add(listeThemes.get(n - 1));
                         listeThemes.remove(n - 1);
@@ -247,7 +240,6 @@ public class Main {
                     }
                 }
             }
-            System.out.println(listeThemes);
         }
     }
 
@@ -278,8 +270,7 @@ public class Main {
 
          Joueur[] listeJoueurs = joueurs.getJoueursRestants().getJoueurs();
          Collections.shuffle(listeQuestions);
-         for(int i=0;i<4;i++){
-             System.out.println(i);
+         for(int i=0;i<joueurs.getNbJoueursSelectionnes();i++){
              System.out.println(listeJoueurs[i].getNom()+", à vous de jouer !");
              poserQuestion(listeJoueurs[i],listeQuestions.get(i),phase);
          }

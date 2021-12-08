@@ -124,12 +124,14 @@ public class Joueurs {
         }
     }
 
-
-    public void eliminePhase(int phase) {
-        switch (phase) {
-            case 1:
-
+    public int getNbJoueursSelectionnes() {
+        int n = 0;
+        for (int i =0; i < index;i++) {
+            if (joueurs[i].getEtat() == Etat.selectionne) {
+                n++;
+            }
         }
+        return n;
     }
 
     /**
