@@ -38,8 +38,8 @@ public class Joueur {
      * N'est utilisé que pour la création d'une IA car nom aléatoire
      * @author Mathilde Paysant
      */
-    public Joueur() {
-        String noms[] = { "HAL", "DoD", "Three", "Four", "Five", "Six" };
+    protected Joueur() {
+        String noms[] = { "HAL-9000", "DoD", "WALL-E", "Metropolis", "Decepticon", "C-3PO", "R2-D2", "Empereur Zurg", "Bay-max", "Terminator", "Astro", "Robocop", "Optimus Prime" };
         Random Dice = new Random();
         int n = Dice.nextInt(noms.length);
         this.nom = noms[n];
@@ -68,11 +68,9 @@ public class Joueur {
         return numero;
     }
 
-    /////
     public int getScore() {
         return score;
     }
-    ////
 
     @Override
     public String toString() {

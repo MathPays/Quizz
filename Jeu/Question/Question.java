@@ -25,7 +25,12 @@ public abstract class Question {
      */
     public Question(String enonce, int niveau) {
         this.enonce = enonce;
-        this.niveau = niveau;
+        if (niveau > 0 && niveau < 4) {
+            this.niveau = niveau;
+        } else {
+            throw new IllegalArgumentException("Le niveau doit être compris entre 1 et 3");
+        }
+
     }
 
     public int getNiveau() {

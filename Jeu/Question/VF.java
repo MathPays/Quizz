@@ -39,7 +39,7 @@ public class VF extends Question {
     }
 
     public boolean reponseIA() {
-        int r = (int) Math.random() * (2 - 0);
+        int r = (int) (Math.random() * ( 2 )+1);
         if (r == 1) {
             System.out.println(r);
             return true;

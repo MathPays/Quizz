@@ -9,11 +9,6 @@ package Jeu.Joueur;
  * enAttente : en attente d'entrer dans la partie
  * @author Mathilde Paysant
  */
-
-/*
-    TODO :
-    - Ajouter un toString à chaque état
- */
 public enum Etat {
     selectionne {
         @Override
@@ -40,4 +35,6 @@ public enum Etat {
             return "en attente";
         }
     };
+
+
 }

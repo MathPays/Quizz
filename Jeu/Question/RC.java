@@ -39,12 +39,12 @@ public class RC extends Question {
 
     @Override
     public String toString() {
-        return super.toString() + "\n Répondez en tapant votre réponse.";
+        return super.toString() + "\nRépondez en tapant votre réponse.";
     }
 
     public boolean reponseIA() {
-        int r = (int) Math.random() * (10 - 0);
-        if (r == 0) {
+        int r = 1 + (int)(Math.random() * 3);
+        if (r == 1) {
             System.out.println(reponse);
             return true;
         } else {

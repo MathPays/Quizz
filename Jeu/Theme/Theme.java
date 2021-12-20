@@ -53,8 +53,12 @@ public class Theme {
         return selection;
     }
 
-
-    public Question getRandomQuestion(int phase) {
+    /**
+     * Fonction utilisée dans la phase 2 pour poster une question au hasard à un joueur
+     * @return question aléatoire de niveau 2
+     * @author Mathilde Paysant
+     */
+    public Question getRandomQuestion() {
         return getQuestions(2).get(new Random().nextInt(getQuestions(2).size()));
     }
 

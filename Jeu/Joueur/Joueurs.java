@@ -1,7 +1,6 @@
 package Jeu.Joueur;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -12,13 +11,8 @@ import java.util.Scanner;
  * @see Joueur
  * @author Mathilde Paysant
  */
-
-/*
-    TODO :
-    - Ajouter une fonction toString affichant tous les joueurs de la partie
- */
 public class Joueurs {
-    private final Joueur [] joueurs;
+    private Joueur [] joueurs;
     private int index;
 
     public Joueurs() {
@@ -67,22 +61,27 @@ public class Joueurs {
      * Suppression d'un joueur de la liste à la phase de création des joueurs
      * @author Mathilde Paysant
      */
-    /*
     public void deleteJoueur() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Entrez le numéro du joueur à supprimer : ");
         int num = scanner.nextInt();
-        for (Joueur joueur: joueurs) {
-            if (joueur.getNumero() == num) {
-                joueurs.remove(joueur);
-                break;
+        Joueur[] newJoueurs = new Joueur[joueurs.length];
+        int newIndex = 0;
+        for (int i = 0; i < index; i++) {
+            if (joueurs[i].getNumero() != num) {
+                newJoueurs[newIndex] = joueurs[i];
+                newIndex++;
+            } else {
+                System.out.println("Le joueur "+joueurs[i].getNom()+" a été supprimé.\n");
             }
         }
-    }*/
+        this.joueurs = newJoueurs;
+        this.index = newIndex;
+    }
 
 
     public int getNbJoueurs() {
-        return joueurs.length;
+        return index;
     }
 
     /**
@@ -91,9 +90,9 @@ public class Joueurs {
      */
     public Joueurs getJoueursRestants() {
         Joueurs joueursRestants = new Joueurs();
-        for (int i =0; i < index;i++) {
-            if (joueurs[i].getEtat() == Etat.selectionne) {
-                joueursRestants.addJoueur(joueurs[i]);
+        for (Joueur joueur: joueurs) {
+            if (joueur != null && joueur.getEtat() == Etat.selectionne) {
+                joueursRestants.addJoueur(joueur);
             }
         }
         return joueursRestants;
@@ -101,6 +100,29 @@ public class Joueurs {
 
     public Joueur getJoueur(int index) {
         return joueurs[index];
+    }
+
+    /**
+     * @return dernier joueur selectionne, return null si aucun ou plusieurs joueurs ont été trouvé
+     * @author Mathilde Paysant
+     */
+    public Joueur getJoueurFinal() {
+        Joueur joueur = null;
+        for (int i = 0; i < index; i++) {
+            if (joueurs[i].getEtat().equals(Etat.selectionne)) {
+                if (joueur != null) {
+                    System.out.println("Erreur : plusieurs joueurs détectés");
+                    return null;
+                } else {
+                    joueur = joueurs[i];
+                }
+            }
+        }
+        if (joueur != null) {
+            return joueur;
+        }
+        System.out.println("Erreur : aucun joueur détecté");
+        return null;
     }
 
     /**
@@ -124,6 +146,11 @@ public class Joueurs {
         }
     }
 
+    /**
+     * Création d'un objet Joueurs contenant uniquement les joueurs avec l'état selectionne
+     * @return Joueurs contenant uniquement les joueurs avec l'état selectionne
+     * @author Mathilde Paysant
+     */
     public int getNbJoueursSelectionnes() {
         int n = 0;
         for (int i =0; i < index;i++) {

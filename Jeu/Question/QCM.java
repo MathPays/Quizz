@@ -9,12 +9,6 @@ import java.util.*;
  * @see Question
  * @author Mathilde Paysant
  */
-
-/*
-    ATTENTION ERREUR : ne fonctionne pas car la bonne réponse est toujours la première
-    TODO :
-    - Mélanger les réponses et garder la position de la bonne réponse
- */
 public class QCM extends Question {
     private ArrayList<String> reponses;
     private int index;
@@ -29,12 +23,6 @@ public class QCM extends Question {
     public QCM(String enonce, int niveau) {
         super(enonce, niveau);
         this.reponses = new ArrayList<String>();
-        this.index = 0;
-    }
-
-    public QCM(String enonce, int niveau, ArrayList<String> reponses) {
-        super(enonce, niveau);
-        this.reponses = reponses;
         this.index = 0;
     }
 
@@ -86,7 +74,7 @@ public class QCM extends Question {
         for (int i = 0; i < liste.size(); i++) {
             result += "\n"+(i+1)+") "+liste.get(i);
         }
-        System.out.println(result.toString());
+        System.out.println(result);
         for (int i = 0; i < liste.size(); i++) {
             if (liste.get(i).equals(reponses.get(index))) {
                 return i+1;
@@ -105,7 +93,7 @@ public class QCM extends Question {
     }
 
     public boolean reponseIA(int bonne) {
-        int r = (int) (Math.random() * ( reponses.size() - 0 ));
+        int r = (int) (Math.random() * ( reponses.size() - 1 )+1);
         System.out.println(r);
         if (r == bonne) {
             return true;
